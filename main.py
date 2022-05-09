@@ -59,8 +59,3 @@ class NepseIPOLookup:
             if "sorry" in resp_message.lower() or "congratulation" in resp_message.lower():
                 break
         return resp_message
-
-
-if __name__ == "__main__":
-    nepse = NepseIPOLookup("<SERVER>", "<API_KEY>")
-    print(nepse.checkIPO("<ORG>", "<BIOID>"))

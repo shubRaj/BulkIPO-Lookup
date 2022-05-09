@@ -4,7 +4,7 @@
 1. Get a free API Key and Server address from [https://ibm.com](https://ibm.com)
 2. Clone the repo
    ```sh
-   git clone https://github.com/shubRaj/NEPSE-BulkIPO-Lookup.git
+   git clone https://github.com/shubRaj/BulkIPO-Lookup.git
    ```
 3. Install Dependencies
    ```sh
