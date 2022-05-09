@@ -19,7 +19,7 @@ class NepseIPOLookup:
         "nine": "9"
     }
 
-    def __init__(self, server, apikey,):
+    def __init__(self, server, apikey):
         self._auth = HTTPBasicAuth('apikey', apikey)
         self._session = requests.Session()
         self._server = server
