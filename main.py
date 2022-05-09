@@ -38,7 +38,9 @@ class NepseIPOLookup:
             'Accept': 'application/json',
         }, data=base64.b64decode(self.captcha_audio), auth=self._auth).json()["results"][0]["alternatives"][0]["transcript"]
         self.user_captcha = "".join(
-            [self.ALPHA_NUMBERS[alpha.lower()] for alpha in text_response.split()])
+            [self.ALPHA_NUMBERS[alpha.lower()]
+             for alpha in text_response.split()]
+        )
         return self
 
     def checkIPO(self, companyShareID, boid):
@@ -47,14 +49,18 @@ class NepseIPOLookup:
             self.__captcha()
             self.__userCaptcha()
             data = json.dumps({
-                "companyShareId": companyShareID, "boid": boid, "userCaptcha": self.user_captcha, "captchaIdentifier": self.captcha_identifier
+                "companyShareId": companyShareID,
+                "boid": boid,
+                "userCaptcha": self.user_captcha,
+                "captchaIdentifier": self.captcha_identifier
             })
             resp_message = self._session.post("https://iporesult.cdsc.com.np/result/result/check", headers={
                                               "Content-Type": "application/json"}, data=data).json()["message"]
             if "sorry" in resp_message.lower() or "congratulation" in resp_message.lower():
-                return resp_message
+                break
+        return resp_message
 
 
 if __name__ == "__main__":
-    nepse = NepseIPOLookup("<SERVER>","<API_KEY>")
+    nepse = NepseIPOLookup("<SERVER>", "<API_KEY>")
     print(nepse.checkIPO("<ORG>", "<BIOID>"))
